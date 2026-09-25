@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Admin Kepegawaian | SIDOKUASN</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons (Modern Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 900: '#0c4a6e' },
+                        cyber: { green: '#10b981', blue: '#3b82f6', dark: '#0b1120' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        
+        /* Cyber Login Styles */
+        .cyber-bg {
+            background-color: #0b1120;
+            background-image: 
+                linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .cyber-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 40px rgba(14, 165, 233, 0.1);
+        }
+        .cyber-input {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #e2e8f0;
+        }
+        .cyber-input:focus {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+            outline: none;
+        }
+
+        /* Glassmorphism Sidebar */
+        .glass-sidebar {
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(15px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .iframe-wrapper {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 1rem;
+            background: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .nav-item.active {
+            background: rgba(14, 165, 233, 0.15);
+            color: #38bdf8;
+            border-left: 4px solid #0ea5e9;
+        }
+        .nav-item { border-left: 4px solid transparent; }
+    </style>
+</head>
+<body class="antialiased overflow-hidden h-screen w-screen flex">
+
+    <!-- ================= LOGIN VIEW (CYBER DIGITAL) ================= -->
+    <div id="login-view" class="fixed inset-0 cyber-bg flex items-center justify-center z-50 transition-all duration-700 ease-in-out">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+            <div class="w-[500px] h-[500px] bg-primary-600 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="cyber-card w-full max-w-md p-8 rounded-2xl mx-4 relative z-10">
+            <div class="text-center mb-8">
+                <div class="mx-auto w-16 h-16 bg-blue-900/50 border border-blue-500/50 text-blue-400 rounded-xl flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                    <i class="ph ph-fingerprint text-4xl animate-pulse"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-white tracking-wider">SIDOKU<span class="text-primary-500">ASN</span></h1>
+                <p class="text-blue-200/60 mt-1 text-sm font-mono">SECURE ADMIN PORTAL_</p>
+            </div>
+            
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-mono text-blue-300/80 mb-1" for="username">> USERNAME_</label>
+                    <div class="relative">
+                        <i class="ph ph-terminal-window absolute left-3.5 top-1/2 -translate-y-1/2 text-blue-500 text-lg"></i>
+                        <input type="text" id="username" class="cyber-input block w-full pl-11 pr-4 py-3 rounded-lg transition-all text-sm font-mono" placeholder="admin" required>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-mono text-blue-300/80 mb-1" for="password">> PASSWORD_</label>
+                    <div class="relative">
+                        <i class="ph ph-lock-key absolute left-3.5 top-1/2 -translate-y-1/2 text-blue-500 text-lg"></i>
+                        <input type="password" id="password" class="cyber-input block w-full pl-11 pr-4 py-3 rounded-lg transition-all text-sm font-mono" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <div id="login-error" class="hidden bg-red-900/30 border border-red-500/50 text-red-400 text-xs p-3 rounded font-mono text-center">
+                    ERROR: Akses Ditolak! Cek kredensial.
+                </div>
+                
+                <button type="submit" class="w-full mt-4 py-3 px-4 rounded-lg text-white bg-primary-600 hover:bg-primary-500 font-mono text-sm font-bold transition-all shadow-[0_0_15px_rgba(14,165,233,0.4)] flex justify-center items-center gap-2 group">
+                    <span>INITIALIZE_LOGIN</span>
+                    <i class="ph ph-caret-right font-bold group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= DASHBOARD VIEW ================= -->
+    <div id="dashboard-view" class="hidden w-full h-full flex opacity-0 transition-opacity duration-500 bg-slate-50">
+        
+        <!-- Sidebar Backdrop -->
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 hidden transition-opacity opacity-0 duration-300"></div>
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="glass-sidebar fixed inset-y-0 left-0 z-50 w-72 text-gray-300 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
+            <div class="h-20 flex items-center justify-between px-6 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                        <i class="ph ph-buildings text-2xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-white leading-tight">SIDOKUASN</h2>
+                        <p class="text-[10px] uppercase tracking-wider text-primary-400 font-semibold">Administrator</p>
+                    </div>
+                </div>
+                <button id="close-sidebar" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
+                    <i class="ph ph-x text-xl"></i>
+                </button>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto no-scrollbar py-6 px-4 space-y-1">
+                <p class="px-4 text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-3">Menu Utama</p>
+                <a href="#" data-type="url" data-title="Dashboard Utama" data-url="https://script.google.com/macros/s/AKfycbyWb-BAwiSF3ZEhV1dwc_Ye5oBFjsRYkgI-wUNpSIkgh1d3xG8TT9B63ocAhv8c8cWVZA/exec" class="nav-item active flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group text-white">
+                    <i class="ph ph-squares-four text-xl mr-3 group-hover:scale-110 transition-transform"></i> Dashboard
+                </a>
+
+                <p class="px-4 text-[11px] font-bold text-gray-500 uppercase tracking-widest mt-8 mb-3">Layanan Verifikasi</p>
+                <a href="#" data-type="url" data-title="Verifikasi Kenaikan Pangkat" data-url="https://www.appsheet.com/start/41b28697-e914-4ceb-98ed-59afdb4a017c?platform=desktop" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
+                    <i class="ph ph-trend-up text-xl mr-3 text-emerald-400 group-hover:scale-110 transition-transform"></i> Kenaikan Pangkat
+                </a>
+                <a href="#" data-type="url" data-title="Verifikasi Pensiun" data-url="https://www.appsheet.com/start/2d5bb785-514e-4f90-b975-fe5b141b09c0?platform=desktop" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
+                    <i class="ph ph-wheelchair text-xl mr-3 text-amber-400 group-hover:scale-110 transition-transform"></i> Pensiun
+                </a>
+                <a href="#" data-type="url" data-title="Verifikasi Gelar & PMK" data-url="https://www.appsheet.com/start/463e8d40-9951-470e-8157-0dc4d172d3fa" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
+                    <i class="ph ph-graduation-cap text-xl mr-3 text-rose-400 group-hover:scale-110 transition-transform"></i> Gelar & PMK
+                </a>
+                <a href="#" data-type="url" data-title="Verifikasi SLKS" data-url="https://example.com/slks" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
+                    <i class="ph ph-medal text-xl mr-3 text-purple-400 group-hover:scale-110 transition-transform"></i> SLKS
+                </a>
+
+                <p class="px-4 text-[11px] font-bold text-gray-500 uppercase tracking-widest mt-8 mb-3">Layanan Lainnya</p>
+                <a href="#" data-type="internal" data-title="Admin Konsultasi Kepegawaian" data-url="konsultasi" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
+                    <i class="ph ph-headset text-xl mr-3 text-cyan-400 group-hover:scale-110 transition-transform"></i> Admin Konsultasi
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-white/10">
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
+                    <div class="relative">
+                        <img src="https://ui-avatars.com/api/?name=Admin+Sistem&background=0ea5e9&color=fff" alt="User" class="w-10 h-10 rounded-full border border-slate-600">
+                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-900 rounded-full"></div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-bold text-white truncate">Admin Sistem</p>
+                        <p class="text-xs text-blue-400 truncate font-mono">AUTHORIZED</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+            <header class="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-4 sm:px-6 z-10">
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <button id="open-sidebar" class="text-slate-600 hover:text-primary-600 p-2 rounded-lg hover:bg-slate-100 transition-colors">
+                        <i class="ph ph-list text-2xl"></i>
+                    </button>
+                    <div>
+                        <h1 id="page-title" class="text-lg sm:text-xl font-bold text-slate-800 tracking-tight">Dashboard Utama</h1>
+                        <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Sistem Informasi Manajemen Kepegawaian</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <button id="logout-btn" class="flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-red-600 bg-slate-50 hover:bg-red-50 px-3 sm:px-4 py-2 rounded-lg border border-slate-200 hover:border-red-200 transition-all">
+                        <i class="ph ph-power text-lg"></i>
+                        <span class="hidden sm:inline">Logout</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="flex-1 p-3 sm:p-6 overflow-hidden relative">
+                <!-- Loader -->
+                <div id="iframe-loader" class="absolute inset-3 sm:inset-6 bg-white/90 backdrop-blur-sm z-10 rounded-2xl border border-slate-100 flex flex-col items-center justify-center transition-opacity duration-300">
+                    <div class="relative flex items-center justify-center">
+                        <div class="w-16 h-16 border-4 border-slate-100 rounded-full"></div>
+                        <div class="absolute w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+                        <i class="ph ph-cpu text-primary-500 text-xl absolute animate-pulse"></i>
+                    </div>
+                    <p class="mt-4 text-sm font-medium text-slate-600 font-mono">ESTABLISHING CONNECTION...</p>
+                </div>
+                
+                <!-- IFRAME MAIN -->
+                <iframe id="service-frame" class="iframe-wrapper bg-slate-50" title="Service Content" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"></iframe>
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= PIN VERIFICATION MODAL ================= -->
+    <div id="pin-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md hidden flex items-center justify-center p-4 z-[100] transition-opacity">
+        <div class="cyber-card w-full max-w-sm p-6 rounded-2xl mx-4 relative z-10 text-center">
+            <div class="mx-auto w-14 h-14 bg-amber-900/40 border border-amber-500/50 text-amber-400 rounded-xl flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                <i class="ph ph-shield-warning text-3xl animate-bounce"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">VERIFIKASI PIN ADMIN</h3>
+            <p id="pin-service-name" class="text-xs text-blue-200/70 font-mono mb-4">Masukkan 6-digit PIN Keamanan untuk membuka layanan.</p>
+            
+            <form id="pin-form" class="space-y-4">
+                <div>
+                    <input type="password" id="pin-input" maxlength="6" class="cyber-input block w-full px-4 py-3 rounded-lg text-center tracking-[0.5em] text-xl font-mono" placeholder="••••••" required autofocus>
+                </div>
+                <div id="pin-error" class="hidden text-red-400 text-xs font-mono">
+                    PIN SALAH! Akses layanan ditolak.
+                </div>
+                <div class="flex gap-2 pt-2">
+                    <button type="button" id="pin-cancel" class="flex-1 py-2.5 px-4 rounded-lg bg-slate-800 hover:bg-slate-700 text-gray-300 font-mono text-xs font-bold transition-all">
+                        BATAL
+                    </button>
+                    <button type="submit" class="flex-1 py-2.5 px-4 rounded-lg text-white bg-primary-600 hover:bg-primary-500 font-mono text-xs font-bold transition-all shadow-[0_0_10px_rgba(14,165,233,0.4)]">
+                        BUKA LAYANAN
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700">
+        <i id="toastIcon" class="ph ph-check-circle text-emerald-400 text-xl"></i>
+        <span id="toastMsg" class="text-sm font-medium">Berhasil menyimpan perubahan</span>
+    </div>
+
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbzvkRjSgLurE81atIJKOTy6p7DZGl4dDVcwZfcyIpvEWrsQd7gcxpjZCGhdhWk4WA/exec';
+        let mainData = [];
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            document.getElementById('toastIcon').className = isError ? 'ph ph-warning-circle text-red-400 text-xl' : 'ph ph-check-circle text-emerald-400 text-xl';
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+
+        function getInitials(name) {
+            return name ? name.charAt(0).toUpperCase() : '?';
+        }
+
+        const konsultasiHTML = `<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Konsultasi Kepegawaian</title>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <script src="https://unpkg.com/@phosphor-icons/web"><\/script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }</style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto space-y-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-2xl shadow-inner">
+                    <i class="ph ph-headset"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-slate-800">Dasbor Konsultasi</h1>
+                    <p class="text-xs text-slate-500 font-medium">Mode Administrator Terhubung ke Database API</p>
+                </div>
+            </div>
+            <button onclick="fetchData()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-xl transition flex items-center gap-2">
+                <i class="ph ph-arrows-clockwise text-base"></i> Segarkan Data
+            </button>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div class="relative w-full md:w-96">
+                <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                <input type="text" id="searchInput" placeholder="Cari nama atau masalah..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+            </div>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <select id="statusFilter" class="w-full md:w-48 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                    <option value="Semua Status">Semua Status</option>
+                    <option value="Menunggu">Menunggu</option>
+                    <option value="Diproses">Diproses</option>
+                    <option value="Selesai">Selesai</option>
+                    <option value="Ditolak">Ditolak</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50/70 text-slate-500 text-xs font-semibold uppercase tracking-wider border-b border-slate-200">
+                            <th class="p-4">Tanggal</th>
+                            <th class="p-4">Pegawai</th>
+                            <th class="p-4">Kategori Layanan</th>
+                            <th class="p-4">Uraian Masalah</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4">Tanggapan/Solusi</th>
+                            <th class="p-4 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-slate-100 text-sm">
+                        <tr><td colspan="7" class="p-8 text-center text-slate-400">Memuat data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TANGGAPAN -->
+    <div id="modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden border border-slate-100">
+            <div class="bg-indigo-600 p-5 text-white flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center">
+                        <i class="ph ph-chat-centered-text text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base leading-tight">Tanggapan Konsultasi</h3>
+                        <p class="text-xs text-indigo-100">Pegawai: <span id="labelNama" class="font-semibold underline"></span></p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition"><i class="ph ph-x text-lg"></i></button>
+            </div>
+            <form id="formTanggapan" class="p-6 space-y-4">
+                <input type="hidden" id="editId">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Status Pengajuan</label>
+                    <select id="editStatus" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="Menunggu">Menunggu</option>
+                        <option value="Diproses">Diproses</option>
+                        <option value="Selesai">Selesai</option>
+                        <option value="Ditolak">Ditolak</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Isi Tanggapan / Solusi</label>
+                    <textarea id="editHasil" rows="4" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 whitespace-pre-wrap break-words leading-relaxed" placeholder="Tuliskan solusi atau tanggapan lengkap di sini..." required></textarea>
+                </div>
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeModal()" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-sm font-semibold transition">Batal</button>
+                    <button type="submit" id="btnSubmit" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-indigo-200 transition">Simpan Pembaruan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700">
+        <i id="toastIcon" class="ph ph-check-circle text-emerald-400 text-xl"></i>
+        <span id="toastMsg" class="text-sm font-medium">Berhasil</span>
+    </div>
+
+    <script>
+        const API_URL = '${API_URL}';
+        let mainData = [];
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            document.getElementById('toastIcon').className = isError ? 'ph ph-warning-circle text-red-400 text-xl' : 'ph ph-check-circle text-emerald-400 text-xl';
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => toast.classList.remove('translate-y-0', 'opacity-100'), 3000);
+        }
+
+        function getInitials(name) {
+            return name ? name.charAt(0).toUpperCase() : '?';
+        }
+
+        async function fetchData() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-slate-400"><i class="ph ph-spinner animate-spin text-2xl mb-1 text-indigo-500 inline-block"></i><br>Memuat data...</td></tr>';
+            try {
+                const res = await fetch(API_URL);
+                mainData = await res.json();
+                renderTable();
+            } catch (err) {
+                tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-red-500"><i class="ph ph-warning-circle text-2xl mb-1"></i><br>Gagal terhubung ke Database API.</td></tr>';
+            }
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            const filteredData = mainData.filter(d => {
+                const matchSearch = d.nama.toLowerCase().includes(searchTerm) || d.keterangan.toLowerCase().includes(searchTerm) || d.waktu.includes(searchTerm);
+                const matchStatus = statusFilter === 'Semua Status' || d.status === statusFilter;
+                return matchSearch && matchStatus;
+            });
+
+            if (filteredData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-slate-400">Tidak ada data konsultasi.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            filteredData.forEach(d => {
+                let st = d.status.toLowerCase();
+                let badgeClass = 'bg-amber-50 text-amber-700 border-amber-200';
+                if(st === 'selesai') badgeClass = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+                else if(st === 'diproses') badgeClass = 'bg-blue-50 text-blue-700 border-blue-200';
+                else if(st === 'ditolak') badgeClass = 'bg-red-50 text-red-700 border-red-200';
+                
+                let tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50/80 transition-colors';
+                tr.innerHTML = \`
+                    <td class="p-4 align-top text-xs text-slate-500 whitespace-nowrap\">\${d.waktu}</td>
+                    <td class="p-4 align-top">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0">\${getInitials(d.nama)}</div>
+                            <div>
+                                <p class="font-bold text-slate-800 text-sm leading-tight mb-0.5">\${d.nama}</p>
+                                <p class="text-[11px] text-slate-500">\${d.tempatTugas || '-'}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-4 align-top">
+                        <span class="inline-block px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-md border border-slate-200 mb-1">\${d.bidang}</span>
+                        <p class="text-xs text-slate-500">\${d.jenis}</p>
+                    </td>
+                    <td class="p-4 align-top">
+                        <div class="text-sm text-slate-700 whitespace-pre-wrap break-words leading-relaxed">\${d.keterangan}</div>
+                    </td>
+                    <td class="p-4 align-top">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border \${badgeClass}">\${d.status}</span>
+                    </td>
+                    <td class="p-4 align-top">
+                        <div class="text-sm text-slate-700 whitespace-pre-wrap break-words leading-relaxed">\${!d.hasil || d.hasil === '-' ? '<span class="text-slate-400 italic">Belum ada tanggapan...</span>' : d.hasil}</div>
+                    </td>
+                    <td class="p-4 align-top text-center">
+                        <button onclick="openModal('\${d.id}')" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white rounded-xl text-xs font-bold transition-all border border-indigo-100 hover:border-indigo-600 shadow-sm">
+                            <i class="ph ph-pencil-simple text-sm"></i> Proses
+                        </button>
+                    </td>
+                \`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', renderTable);
+        document.getElementById('statusFilter').addEventListener('change', renderTable);
+
+        function openModal(id) {
+            const d = mainData.find(x => String(x.id) === String(id));
+            if(d) {
+                document.getElementById('editId').value = id;
+                document.getElementById('labelNama').textContent = d.nama;
+                document.getElementById('editStatus').value = d.status === 'Menunggu' ? 'Diproses' : d.status;
+                document.getElementById('editHasil').value = d.hasil === '-' ? '' : d.hasil;
+                document.getElementById('modal').classList.remove('hidden');
+            }
+        }
+
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+        document.getElementById('formTanggapan').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            btn.innerHTML = '<i class="ph ph-spinner animate-spin"></i> Menyimpan...';
+            btn.disabled = true;
+
+            const payload = {
+                action: 'update',
+                data: {
+                    id: document.getElementById('editId').value,
+                    status: document.getElementById('editStatus').value,
+                    hasil: document.getElementById('editHasil').value
+                }
+            };
+
+            try {
+                await fetch(API_URL, { method: 'POST', body: JSON.stringify(payload), headers: { 'Content-Type': 'text/plain;charset=utf-8' } });
+                showToast('Tanggapan berhasil disimpan!');
+                closeModal();
+                fetchData();
+            } catch (err) {
+                showToast('Gagal menyimpan tanggapan!', true);
+            } finally {
+                btn.innerHTML = 'Simpan Pembaruan';
+                btn.disabled = false;
+            }
+        });
+
+        window.onload = fetchData;
+    <\/script>
+</body>
+</html>`;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+            const loginView = document.getElementById('login-view');
+            const dashboardView = document.getElementById('dashboard-view');
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('sidebar-backdrop');
+            const openBtn = document.getElementById('open-sidebar');
+            const closeBtn = document.getElementById('close-sidebar');
+            const logoutBtn = document.getElementById('logout-btn');
+            const navItems = document.querySelectorAll('.nav-item');
+            const iframe = document.getElementById('service-frame');
+            const loader = document.getElementById('iframe-loader');
+            const pageTitle = document.getElementById('page-title');
+            
+            const pinModal = document.getElementById('pin-modal');
+            const pinForm = document.getElementById('pin-form');
+            const pinInput = document.getElementById('pin-input');
+            const pinError = document.getElementById('pin-error');
+            const pinServiceName = document.getElementById('pin-service-name');
+            const pinCancelBtn = document.getElementById('pin-cancel');
+            
+            let pendingNavItem = null;
+            const AUTH_KEY = 'sidoku_auth_valid';
+
+            // PIN khusus untuk masing-masing layanan verifikasi
+            const SERVICE_PINS = {
+                'Verifikasi Kenaikan Pangkat': '111111',
+                'Verifikasi Pensiun': '222222',
+                'Verifikasi Gelar & PMK': '333333',
+                'Verifikasi SLKS': '444444'
+            };
+            let currentRequiredPin = '';
+
+            function checkAuth() {
+                if (sessionStorage.getItem(AUTH_KEY) === 'true') {
+                    loginView.classList.add('hidden');
+                    dashboardView.classList.remove('hidden');
+                    setTimeout(() => dashboardView.classList.remove('opacity-0'), 50);
+                    // Load default active page
+                    const activeNav = document.querySelector('.nav-item.active');
+                    if (activeNav) triggerNav(activeNav, true);
+                } else {
+                    loginView.classList.remove('hidden');
+                    dashboardView.classList.add('hidden');
+                    dashboardView.classList.add('opacity-0');
+                }
+            }
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const u = document.getElementById('username').value.trim();
+                const p = document.getElementById('password').value;
+                const err = document.getElementById('login-error');
+
+                if (u === 'admin' && p === 'admin123') {
+                    sessionStorage.setItem(AUTH_KEY, 'true');
+                    err.classList.add('hidden');
+                    checkAuth();
+                    showToast('Login Berhasil! Selamat datang Admin.');
+                } else {
+                    err.classList.remove('hidden');
+                    document.getElementById('password').value = '';
+                    document.getElementById('password').focus();
+                }
+            });
+
+            logoutBtn.addEventListener('click', () => {
+                sessionStorage.removeItem(AUTH_KEY);
+                checkAuth();
+                showToast('Berhasil Logout.', false);
+            });
+
+            function openSidebar() {
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+            }
+
+            function closeSidebar() {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+            }
+
+            openBtn.addEventListener('click', openSidebar);
+            closeBtn.addEventListener('click', closeSidebar);
+            backdrop.addEventListener('click', closeSidebar);
+
+            function loadContent(type, source) {
+                loader.classList.remove('opacity-0', 'pointer-events-none');
+                
+                // Reset src / srcdoc
+                iframe.removeAttribute('src');
+                iframe.removeAttribute('srcdoc');
+
+                setTimeout(() => {
+                    if (type === 'internal') {
+                        iframe.srcdoc = source;
+                    } else {
+                        iframe.src = source;
+                    }
+                }, 100);
+
+                iframe.onload = () => {
+                    loader.classList.add('opacity-0', 'pointer-events-none');
+                };
+                
+                // Fallback timeout loader in case iframe doesn't trigger onload
+                setTimeout(() => {
+                    loader.classList.add('opacity-0', 'pointer-events-none');
+                }, 2000);
+            }
+
+            function triggerNav(item, bypassPin = false) {
+                const title = item.getAttribute('data-title');
+                const type = item.getAttribute('data-type');
+                const url = item.getAttribute('data-url');
+                
+                const isVerificationService = url.includes('appsheet.com') || title.includes('Verifikasi');
+
+                if (isVerificationService && !bypassPin) {
+                    pendingNavItem = item;
+                    currentRequiredPin = SERVICE_PINS[title] || '123456';
+                    pinServiceName.textContent = `Akses: ${title} (Masukkan PIN Khusus)`;
+                    pinInput.value = '';
+                    pinError.classList.add('hidden');
+                    pinModal.classList.remove('hidden');
+                    setTimeout(() => pinInput.focus(), 100);
+                    return;
+                }
+
+                navItems.forEach(nav => {
+                    nav.classList.remove('active', 'text-white');
+                    nav.classList.add('text-gray-300');
+                });
+                item.classList.add('active', 'text-white');
+                item.classList.remove('text-gray-300');
+                
+                pageTitle.textContent = title;
+                
+                if(type === 'internal' && url === 'konsultasi') {
+                    loadContent('internal', konsultasiHTML);
+                } else {
+                    loadContent('url', url);
+                }
+                
+                if(window.innerWidth < 1024) {
+                    closeSidebar();
+                }
+            }
+
+            pinForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (pinInput.value === currentRequiredPin) {
+                    pinModal.classList.add('hidden');
+                    pinError.classList.add('hidden');
+                    if (pendingNavItem) {
+                        triggerNav(pendingNavItem, true);
+                        pendingNavItem = null;
+                    }
+                } else {
+                    pinError.classList.remove('hidden');
+                    pinInput.value = '';
+                    pinInput.focus();
+                }
+            });
+
+            pinCancelBtn.addEventListener('click', () => {
+                pinModal.classList.add('hidden');
+                pendingNavItem = null;
+            });
+
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    triggerNav(item);
+                });
+            });
+
+            // Run initial check
+            checkAuth();
+        });
+    </script>
+</body>
+</html>
