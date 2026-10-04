@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Admin Kepegawaian | SIDOKUASN</title>
-    <link rel="icon" href="https://cdn.phototourl.com/free/2026-08-25-bbbbd517-843f-4ae4-80df-8f3874e0f001.png" />
+    <link rel="icon" href="https://cdn.phototourl.com/member/2026-09-17-a6bdc656-5e36-4f85-812d-a33242ba7693.png" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -159,7 +159,7 @@
 
             <nav class="flex-1 overflow-y-auto no-scrollbar py-6 px-4 space-y-1">
                 <p class="px-4 text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-3">Menu Utama</p>
-                <a href="#" data-type="url" data-title="Dashboard Utama" data-url="https://script.google.com/macros/s/AKfycbyWb-BAwiSF3ZEhV1dwc_Ye5oBFjsRYkgI-wUNpSIkgh1d3xG8TT9B63ocAhv8c8cWVZA/exec" class="nav-item active flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group text-white">
+                <a href="#" data-type="url" data-title="Dashboard Utama" data-url="https://cdn.phototourl.com/member/2026-09-16-a468b2c4-4621-424e-a6f9-f70138ae260a.png" class="nav-item active flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group text-white">
                     <i class="ph ph-squares-four text-xl mr-3 group-hover:scale-110 transition-transform"></i> Dashboard
                 </a>
 
@@ -180,6 +180,10 @@
                 <p class="px-4 text-[11px] font-bold text-gray-500 uppercase tracking-widest mt-8 mb-3">Layanan Lainnya</p>
                 <a href="#" data-type="internal" data-title="Admin Konsultasi Kepegawaian" data-url="konsultasi" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
                     <i class="ph ph-headset text-xl mr-3 text-cyan-400 group-hover:scale-110 transition-transform"></i> Admin Konsultasi
+                </a>
+                <!-- MENU ADMIN KLIK-ASN BARU DITAMBAHKAN -->
+                <a href="#" data-type="internal" data-title="Admin Klik-ASN" data-url="klik_asn" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
+                    <i class="ph ph-laptop text-xl mr-3 text-teal-400 group-hover:scale-110 transition-transform"></i> Admin Klik-ASN
                 </a>
             </nav>
 
@@ -452,7 +456,7 @@
                 let tr = document.createElement('tr');
                 tr.className = 'hover:bg-slate-50/80 transition-colors';
                 tr.innerHTML = \`
-                    <td class="p-4 align-top text-xs text-slate-500 whitespace-nowrap\">\${d.waktu}</td>
+                    <td class="p-4 align-top text-xs text-slate-500 whitespace-nowrap">\${d.waktu}</td>
                     <td class="p-4 align-top">
                         <div class="flex items-start gap-3">
                             <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0">\${getInitials(d.nama)}</div>
@@ -533,6 +537,625 @@
     <\/script>
 </body>
 </html>`;
+
+        // =========================================================================
+        // MASUKKAN KODE HTML ADMIN KLIK-ASN ANDA DI DALAM VARIABEL DI BAWAH INI
+        // (Ganti bagian di dalam backtick ` ` dengan HTML Anda)
+        // =========================================================================
+        const adminKlikAsnHTML = `<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0c8de9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Dashboard Admin KLIK-ASN">
+<link id="manifest-link" rel="manifest" href="">
+<link rel="apple-touch-icon" href="https://placehold.co/192x192/0c8de9/ffffff?text=KA">
+
+<title>Dashboard Admin Pengguna v2 — KLIK-ASN</title>
+<script src="https://cdn.tailwindcss.com"><\/script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" media="print" onload="this.media='all'">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace']
+        },
+        colors: {
+          brand: {
+            50: '#f0f7ff', 100: '#e0effe', 200: '#bae0fd', 300: '#7cc8fb',
+            400: '#36a9f7', 500: '#0c8de9', 600: '#026fc7', 700: '#0358a1',
+            800: '#074b83', 900: '#0c3f6e', 950: '#082849'
+          }
+        },
+        animation: {
+          'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          'float': 'float 6s ease-in-out infinite',
+        },
+        keyframes: {
+          float: {
+            '0%, 100%': { transform: 'translateY(0px)' },
+            '50%': { transform: 'translateY(-10px)' },
+          }
+        }
+      }
+    }
+  }
+<\/script>
+
+<style>
+  /* Optimasi Scrollbar dan Performa Rendering */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+  .dark ::-webkit-scrollbar-thumb { background: #334155; }
+  
+  /* Hardware acceleration untuk animasi */
+  .animate-modal { 
+    animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+    will-change: transform, opacity;
+  }
+  
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* Utilities */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .dark .glass-panel {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+</style>
+
+<script>
+// --- State & Config ---
+const AUTH_CONFIG = Object.freeze({
+  url: 'https://script.google.com/macros/s/AKfycbxIddjH5-zSokJwz_YNYtmXRNuPNx5-6RCw_feKdLDgxZWMaEB68osH1vBP1N0mCdvTbw/exec',
+  version: '7.0',
+  storageKey: 'klik_asn_admin_session_v7'
+});
+
+const State = {
+  adminPassword: '',
+  users: [],
+  pending: [],
+  activeFilter: 'all',
+  isDemoMode: false,
+  currentViewMode: 'table',
+  deferredPrompt: null,
+  maxRenderLimit: 50
+};
+
+const DOM = {};
+
+function initDOMCache() {
+  ['toast', 'modalBox', 'modalTitle', 'modalDesc', 'modalInput', 'modalOkBtn', 
+   'modalCancelBtn', 'guideModal', 'loginView', 'dashboardView', 'adminPassword', 
+   'loginBtn', 'modeIndicator', 'statTotal', 'statActive', 
+   'statNonActive', 'statPending', 'pendingBadge', 'pendingBody', 'searchUser', 
+   'userCount', 'usersBody', 'usersCardView', 'usersTableView', 'viewTableBtn', 
+   'viewCardBtn'].forEach(id => {
+      DOM[id] = document.getElementById(id);
+  });
+}
+
+// --- Utilities ---
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmt = v => {
+  if (!v) return '-';
+  try { return new Date(v).toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' }); } catch { return v; }
+};
+
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+function getInitials(name) {
+  if (!name) return 'AS';
+  const clean = name.replace(/^(Drs\\.|Dr\\.|Ir\\.|H\\.|Hj\\.|S\\.[A-Za-z]+|M\\.[A-Za-z]+)\\s+/gi, '');
+  const parts = clean.trim().split(' ').filter(Boolean);
+  return parts.length >= 2 ? (parts[0][0] + parts[1][0]).toUpperCase() : clean.substring(0, 2).toUpperCase();
+}
+
+// --- UI Components ---
+function statusBadge(v) {
+  const a = String(v || '').toLowerCase() === 'active';
+  return \`<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold \${
+    a ? 'bg-emerald-50 text-emerald-700 border border-emerald-200/80 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800/50' 
+      : 'bg-rose-50 text-rose-700 border border-rose-200/80 dark:bg-rose-950/50 dark:text-rose-300 dark:border-rose-800/50'
+  }">
+    <span class="w-1.5 h-1.5 rounded-full mr-1.5 \${a ? 'bg-emerald-500' : 'bg-rose-500'}"></span>
+    \${a ? 'Aktif' : 'Non-Aktif'}
+  </span>\`;
+}
+
+function resetBadge(v) {
+  const s = String(v || '').toLowerCase();
+  if (s === 'pending') return \`<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200/80 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800/50"><i class="fas fa-clock text-amber-500 mr-1.5 text-[10px]"></i>Pending</span>\`;
+  if (s === 'approved') return \`<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200/80 dark:bg-blue-950/50 dark:text-blue-300 dark:border-blue-800/50"><i class="fas fa-check-circle text-blue-500 mr-1.5 text-[10px]"></i>Approved</span>\`;
+  if (s === 'rejected') return \`<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700"><i class="fas fa-ban text-slate-400 mr-1.5 text-[10px]"></i>Rejected</span>\`;
+  return '<span class="text-xs text-slate-400 dark:text-slate-500 font-medium">-</span>';
+}
+
+function notify(msg, type = 'ok') {
+  const toastEl = document.createElement('div');
+  toastEl.className = \`pointer-events-auto flex items-start gap-3 p-4 rounded-2xl shadow-xl border backdrop-blur-md transition-all duration-300 animate-modal max-w-md \${
+    type === 'ok' ? 'bg-white/95 dark:bg-slate-900/95 border-emerald-200 dark:border-emerald-800/50 text-slate-800 dark:text-slate-100' 
+                  : 'bg-white/95 dark:bg-slate-900/95 border-rose-200 dark:border-rose-800/50 text-slate-800 dark:text-slate-100'
+  }\`;
+  toastEl.innerHTML = \`
+    <div class="w-8 h-8 rounded-xl \${type === 'ok' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' : 'bg-rose-500/10 text-rose-600 dark:text-rose-400'} flex items-center justify-center shrink-0 mt-0.5">
+      <i class="fas \${type === 'ok' ? 'fa-check-circle' : 'fa-triangle-exclamation'} text-base"></i>
+    </div>
+    <div class="flex-1 pr-1">
+      <div class="text-xs font-bold uppercase tracking-wider \${type === 'ok' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}">
+        \${type === 'ok' ? 'Informasi' : 'Peringatan'}
+      </div>
+      <div class="text-sm font-semibold mt-0.5">\${esc(msg)}</div>
+    </div>\`;
+  
+  DOM.toast.appendChild(toastEl);
+  setTimeout(() => {
+    toastEl.style.opacity = '0';
+    toastEl.style.transform = 'translateY(-10px)';
+    setTimeout(() => toastEl.remove(), 300);
+  }, 3500);
+}
+
+// --- API & Logika Bisnis ---
+async function api(action, extra = {}) {
+  if (State.isDemoMode) return handleDemoApi(action, extra);
+  try {
+    const r = await fetch(AUTH_CONFIG.url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ api: 'KLIK-ASN-AUTH', version: AUTH_CONFIG.version, action, nip: 'ADMIN', adminKey: State.adminPassword, ...extra })
+    });
+    return await r.json();
+  } catch (e) {
+    State.isDemoMode = true;
+    updateModeIndicator();
+    notify('Beralih ke Mode Sandbox Demo (Koneksi Server Terbatas).', 'ok');
+    return handleDemoApi(action, extra);
+  }
+}
+
+function handleDemoApi(action, extra) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      if (action === 'admin_login') resolve({ success: true, message: 'Login Berhasil (Demo)' });
+      else if (action === 'admin_users') resolve({
+        success: true, stats: { total: 4, active: 3, nonActive: 1, pending: 1 },
+        data: [
+          { nip: '198501012010011001', nama: 'I Wayan Sudarsana, S.Sos', status: 'Active', resetStatus: 'None', resetRequestedAt: '' },
+          { nip: '199005122015032002', nama: 'Ni Luh Putu Mawar, S.E.', status: 'Active', resetStatus: 'Pending', resetRequestedAt: new Date().toISOString() },
+          { nip: '198212152006041003', nama: 'Gede Kadek Arta, M.T.', status: 'Non Active', resetStatus: 'None', resetRequestedAt: '' },
+          { nip: '199408222019022004', nama: 'Desak Made Sari, S.Pd.', status: 'Active', resetStatus: 'Approved', resetRequestedAt: new Date(Date.now() - 86400000).toISOString() }
+        ]
+      });
+      else if (action === 'admin_pending') resolve({
+        success: true, data: [{ nip: '199005122015032002', nama: 'Ni Luh Putu Mawar, S.E.', resetRequestedAt: new Date().toISOString(), adminNote: 'Menunggu verifikasi admin BKPSDM' }]
+      });
+      else resolve({ success: true, message: 'Aksi berhasil disimulasikan.' });
+    }, 300);
+  });
+}
+
+function updateModeIndicator() {
+  if (!DOM.modeIndicator) return;
+  if (State.isDemoMode) {
+    DOM.modeIndicator.className = 'px-3 py-1 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/30 text-xs font-bold flex items-center gap-2 shadow-sm';
+    DOM.modeIndicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span><i class="fas fa-flask"></i><span>Demo Mode</span>';
+  } else {
+    DOM.modeIndicator.className = 'px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 text-xs font-bold flex items-center gap-2 shadow-sm';
+    DOM.modeIndicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span><i class="fas fa-signal"></i><span>Live</span>';
+  }
+}
+
+// --- Modals & Interaksi ---
+function showModal(title, message, placeholder, callback) {
+  DOM.modalTitle.textContent = title;
+  DOM.modalDesc.textContent = message;
+  DOM.modalInput.value = placeholder || '';
+  DOM.modalBox.classList.remove('hidden');
+  DOM.modalInput.focus();
+
+  const clean = () => {
+    DOM.modalBox.classList.add('hidden');
+    DOM.modalOkBtn.replaceWith(DOM.modalOkBtn.cloneNode(true));
+    DOM.modalCancelBtn.replaceWith(DOM.modalCancelBtn.cloneNode(true));
+    initDOMCache();
+  };
+
+  DOM.modalOkBtn.addEventListener('click', () => {
+    const val = DOM.modalInput.value;
+    clean();
+    callback(val);
+  });
+  DOM.modalCancelBtn.addEventListener('click', () => { clean(); callback(null); });
+}
+
+async function loadAll() {
+  const refreshIcon = document.getElementById('refreshIcon');
+  if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+  try {
+    const [u, p] = await Promise.all([api('admin_users'), api('admin_pending')]);
+    if (!u.success) throw new Error(u.message || 'Gagal memuat data');
+    
+    State.users = u.data || [];
+    State.pending = p.success ? (p.data || []) : [];
+    
+    const s = u.stats || {};
+    DOM.statTotal.textContent = s.total ?? State.users.length;
+    DOM.statActive.textContent = s.active ?? 0;
+    DOM.statNonActive.textContent = s.nonActive ?? 0;
+    DOM.statPending.textContent = s.pending ?? State.pending.length;
+    
+    renderPending();
+    renderUsers();
+  } catch (e) {
+    notify(e.message, 'err');
+    if (e.message.includes('Gagal memuat')) logout();
+  } finally {
+    if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+  }
+}
+
+function renderPending() {
+  if (DOM.pendingBadge) {
+    DOM.pendingBadge.textContent = State.pending.length;
+    DOM.pendingBadge.className = State.pending.length > 0 
+      ? "px-2 py-0.5 rounded-full bg-amber-500 text-white text-xs font-extrabold animate-pulse" 
+      : "px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold";
+  }
+
+  if (!State.pending.length) {
+    DOM.pendingBody.innerHTML = \`
+      <div class="p-8 text-center text-slate-400 dark:text-slate-500">
+        <div class="w-12 h-12 mx-auto mb-2 rounded-2xl bg-slate-100 dark:bg-slate-800/60 flex items-center justify-center text-emerald-500 text-xl shadow-inner"><i class="fas fa-shield-check"></i></div>
+        <p class="text-sm font-bold text-slate-700 dark:text-slate-300">Tidak ada pengajuan reset</p>
+      </div>\`;
+    return;
+  }
+
+  DOM.pendingBody.innerHTML = State.pending.map(x => \`
+    <div class="p-4 border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50/50 dark:hover:bg-slate-800/40 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors">
+      <div class="flex items-start gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 text-white font-bold flex items-center justify-center shrink-0 text-sm">\${getInitials(x.nama)}</div>
+        <div>
+          <div class="font-bold text-slate-900 dark:text-slate-100 text-sm">\${esc(x.nama)}</div>
+          <div class="flex flex-wrap gap-2 mt-1">
+            <span class="font-mono text-[11px] bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded font-semibold border border-slate-200 dark:border-slate-700">\${esc(x.nip)}</span>
+            <span class="text-[11px] text-slate-500"><i class="fas fa-clock text-amber-500 mr-1"></i>\${esc(fmt(x.resetRequestedAt))}</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button data-action="approve" data-nip="\${esc(x.nip)}" class="flex-1 md:flex-none px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition active:scale-95"><i class="fas fa-check mr-1.5"></i>Setujui</button>
+        <button data-action="reject" data-nip="\${esc(x.nip)}" class="flex-1 md:flex-none px-4 py-2 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-950/50 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60 text-xs font-bold transition active:scale-95"><i class="fas fa-xmark mr-1.5"></i>Tolak</button>
+      </div>
+    </div>\`).join('');
+}
+
+function renderUsers() {
+  const q = DOM.searchUser.value.trim().toLowerCase();
+  
+  let list = State.users.filter(x => {
+    const text = \`\${x.nip} \${x.nama} \${x.status} \${x.resetStatus}\`.toLowerCase();
+    const ok = State.activeFilter === 'all' || 
+              (State.activeFilter === 'active' && x.status.toLowerCase() === 'active') || 
+              (State.activeFilter === 'nonactive' && x.status.toLowerCase() !== 'active') || 
+              (State.activeFilter === 'pending' && x.resetStatus.toLowerCase() === 'pending');
+    return (q === '' || text.includes(q)) && ok;
+  });
+
+  const totalFiltered = list.length;
+  const isTruncated = list.length > State.maxRenderLimit;
+  if (isTruncated) list = list.slice(0, State.maxRenderLimit);
+
+  DOM.userCount.innerHTML = \`\${totalFiltered} pengguna ditemukan \${isTruncated ? \`<span class="text-amber-500 font-bold ml-1">(Menampilkan \${State.maxRenderLimit} teratas. Gunakan pencarian.)</span>\` : ''}\`;
+
+  const renderEmpty = () => \`
+    <div class="\${State.currentViewMode === 'table' ? 'w-full absolute left-0' : 'col-span-full'} p-10 text-center text-slate-400">
+      <div class="w-12 h-12 mx-auto mb-2 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-lg"><i class="fas fa-search"></i></div>
+      <p class="text-sm font-bold text-slate-600 dark:text-slate-300">Data tidak ditemukan</p>
+    </div>\`;
+
+  if (State.currentViewMode === 'cards' || window.innerWidth < 640) {
+    DOM.usersTableView.classList.add('hidden');
+    DOM.usersCardView.classList.remove('hidden');
+    
+    DOM.usersCardView.innerHTML = list.length ? list.map(x => {
+      const active = x.status.toLowerCase() === 'active';
+      return \`
+        <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 font-bold flex items-center justify-center text-sm border border-brand-200/50 dark:border-brand-800/50">\${getInitials(x.nama)}</div>
+              <div>
+                <div class="font-bold text-slate-900 dark:text-slate-100 text-sm">\${esc(x.nama)}</div>
+                <div class="font-mono text-xs text-slate-500 mt-0.5">\${esc(x.nip)}</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 flex items-center justify-between">
+            \${statusBadge(x.status)}
+            \${resetBadge(x.resetStatus)}
+          </div>
+          <button data-action="toggleStatus" data-nip="\${esc(x.nip)}" data-next="\${active ? 'Non Active' : 'Active'}" class="mt-4 w-full py-2.5 rounded-xl \${active ? 'bg-rose-50 text-rose-700 border border-rose-200/80 dark:bg-rose-950/40 dark:text-rose-300' : 'bg-emerald-50 text-emerald-700 border border-emerald-200/80 dark:bg-emerald-950/40 dark:text-emerald-300'} text-xs font-bold transition active:scale-95"><i class="fas \${active ? 'fa-user-xmark' : 'fa-user-check'} mr-2">\${active ? 'Nonaktifkan Akun' : 'Aktifkan Akun'}</button>
+        </div>\`;
+    }).join('') : renderEmpty();
+  } else {
+    DOM.usersCardView.classList.add('hidden');
+    DOM.usersTableView.classList.remove('hidden');
+    
+    DOM.usersBody.classList.toggle('relative', list.length === 0);
+    DOM.usersBody.style.minHeight = list.length === 0 ? '200px' : 'auto';
+
+    DOM.usersBody.innerHTML = list.length ? list.map(x => {
+      const active = x.status.toLowerCase() === 'active';
+      return \`
+        <tr class="border-b border-slate-100 dark:border-slate-800/60 hover:bg-slate-50/70 dark:hover:bg-slate-800/30 transition-colors">
+          <td class="px-5 py-3 font-mono text-xs font-semibold whitespace-nowrap"><span class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded border border-slate-200 dark:border-slate-700">\${esc(x.nip)}</span></td>
+          <td class="px-5 py-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300 font-bold flex items-center justify-center text-xs shrink-0">\${getInitials(x.nama)}</div>
+              <div><div class="font-bold text-sm">\${esc(x.nama)}</div><div class="mt-1">\${statusBadge(x.status)}</div></div>
+            </div>
+          </td>
+          <td class="px-5 py-3 whitespace-nowrap">\${resetBadge(x.resetStatus)}</td>
+          <td class="px-5 py-3 text-xs text-slate-500 font-medium whitespace-nowrap">\${esc(fmt(x.resetRequestedAt))}</td>
+          <td class="px-5 py-3 text-right">
+            <button data-action="toggleStatus" data-nip="\${esc(x.nip)}" data-next="\${active ? 'Non Active' : 'Active'}" class="px-3 py-1.5 rounded-lg \${active ? 'bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-300' : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-300'} text-xs font-bold transition active:scale-95"><i class="fas \${active ? 'fa-ban' : 'fa-check'} mr-1.5 text-[10px]"></i>\${active ? 'Nonaktifkan' : 'Aktifkan'}</button>
+          </td>
+        </tr>\`;
+    }).join('') : renderEmpty();
+  }
+}
+
+// --- Actions ---
+async function handleAction(action, nip, extraData) {
+  if (action === 'approve') {
+    showModal('Setujui Reset', \`Catatan untuk NIP \${nip}:\`, 'Disetujui Admin', async (note) => {
+      if (note === null) return;
+      const r = await api('admin_approve_reset', { nip, note });
+      notify(r.message || 'Berhasil disetujui.', r.success ? 'ok' : 'err');
+      if (r.success) loadAll();
+    });
+  } else if (action === 'reject') {
+    showModal('Tolak Reset', \`Alasan penolakan NIP \${nip}:\`, 'Data tidak valid', async (note) => {
+      if (note === null) return;
+      const r = await api('admin_reject_reset', { nip, note });
+      notify(r.message || 'Berhasil ditolak.', r.success ? 'ok' : 'err');
+      if (r.success) loadAll();
+    });
+  } else if (action === 'toggleStatus') {
+    const nextStatus = extraData;
+    showModal('Ubah Status', \`Ketik "UBAH" untuk mengonfirmasi status NIP \${nip} menjadi \${nextStatus}:\`, 'UBAH', async (val) => {
+      if (val === null) return;
+      const r = await api('admin_set_status', { nip, status: nextStatus });
+      notify(r.message || 'Status diperbarui.', r.success ? 'ok' : 'err');
+      if (r.success) loadAll();
+    });
+  }
+}
+
+// --- Setup Event Delegation ---
+function setupDelegation() {
+  const handler = (e) => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    handleAction(btn.dataset.action, btn.dataset.nip, btn.dataset.next);
+  };
+  DOM.pendingBody.addEventListener('click', handler);
+  DOM.usersBody.addEventListener('click', handler);
+  DOM.usersCardView.addEventListener('click', handler);
+}
+
+// --- Control Flow ---
+async function login() {
+  const pwd = DOM.adminPassword.value.trim();
+  if (!pwd) return notify('Password wajib diisi.', 'err');
+
+  DOM.loginBtn.disabled = true;
+  DOM.loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Memverifikasi...';
+
+  try {
+    State.adminPassword = pwd;
+    const r = await api('admin_login', { nip: 'ADMIN', adminKey: pwd });
+    if (!r.success) return notify(r.message || 'Login gagal. Periksa Password.', 'err');
+    
+    sessionStorage.setItem(AUTH_CONFIG.storageKey, pwd);
+    notify('Login Berhasil.', 'ok');
+    
+    DOM.loginView.classList.add('hidden');
+    DOM.dashboardView.classList.remove('hidden');
+    updateModeIndicator();
+    loadAll();
+  } catch (e) {
+    notify('Koneksi terputus.', 'err');
+  } finally {
+    DOM.loginBtn.disabled = false;
+    DOM.loginBtn.innerHTML = '<span>Masuk Dashboard</span><i class="fas fa-arrow-right text-xs"></i>';
+  }
+}
+
+function logout() {
+  State.adminPassword = '';
+  sessionStorage.removeItem(AUTH_CONFIG.storageKey);
+  DOM.dashboardView.classList.add('hidden');
+  DOM.loginView.classList.remove('hidden');
+  DOM.adminPassword.value = '';
+}
+
+function setFilter(f) {
+  State.activeFilter = f;
+  document.querySelectorAll('.filterBtn').forEach(b => {
+    b.className = b.dataset.filter === f 
+      ? 'filterBtn px-3.5 py-2 rounded-xl bg-brand-900 dark:bg-brand-600 text-white text-xs font-bold shadow-md transition'
+      : 'filterBtn px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm';
+  });
+  renderUsers();
+}
+
+function setViewMode(mode) {
+  State.currentViewMode = mode;
+  DOM.viewTableBtn.className = mode === 'table' ? 'p-2 rounded-lg bg-brand-900 text-white dark:bg-brand-600' : 'p-2 rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400';
+  DOM.viewCardBtn.className = mode === 'cards' ? 'p-2 rounded-lg bg-brand-900 text-white dark:bg-brand-600' : 'p-2 rounded-lg bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400';
+  renderUsers();
+}
+
+function toggleDarkMode() {
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// --- Initialization ---
+document.addEventListener('DOMContentLoaded', () => {
+  initDOMCache();
+  setupDelegation();
+
+  const debouncedSearch = debounce(() => renderUsers(), 300);
+  DOM.searchUser.addEventListener('input', debouncedSearch);
+
+  if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  }
+
+  const savedPwd = sessionStorage.getItem(AUTH_CONFIG.storageKey);
+  if (savedPwd) {
+    State.adminPassword = savedPwd;
+    api('admin_login', { nip: 'ADMIN', adminKey: savedPwd }).then(r => {
+      if (r.success) {
+        DOM.loginView.classList.add('hidden');
+        DOM.dashboardView.classList.remove('hidden');
+        updateModeIndicator();
+        loadAll();
+      }
+    });
+  }
+
+  DOM.adminPassword.addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+  window.addEventListener('resize', debounce(() => {
+    if (window.innerWidth < 640 && State.currentViewMode === 'table') renderUsers();
+  }, 200));
+});
+<\/script>
+</head>
+
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased">
+<div id="toast" class="fixed top-5 right-5 z-50 pointer-events-none flex flex-col gap-2.5"></div>
+
+<!-- Modal Konfirmasi -->
+<div id="modalBox" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-md hidden flex items-center justify-center p-4">
+  <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200/80 dark:border-slate-800 w-full max-w-md p-6 space-y-5 animate-modal">
+    <div class="w-12 h-12 rounded-2xl bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl"><i class="fas fa-shield-halved"></i></div>
+    <div>
+      <h3 id="modalTitle" class="font-bold text-lg">Konfirmasi</h3>
+      <p id="modalDesc" class="text-xs text-slate-500 mt-1"></p>
+    </div>
+    <input id="modalInput" type="text" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+    <div class="flex gap-2.5 justify-end pt-2">
+      <button id="modalCancelBtn" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800">Batal</button>
+      <button id="modalOkBtn" class="px-5 py-2 rounded-xl bg-brand-900 text-white text-xs font-bold hover:bg-brand-800 shadow-md">Proses</button>
+    </div>
+  </div>
+</div>
+
+<section id="loginView" class="min-h-screen flex items-center justify-center p-4 bg-slate-100 dark:bg-slate-950 relative overflow-hidden">
+  <div class="w-full max-w-md glass-panel rounded-3xl shadow-2xl border border-white/60 dark:border-slate-800/80 p-8 relative z-10">
+    <div class="flex justify-between items-center mb-6">
+      <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-[11px] font-extrabold uppercase">Admin Portal</span>
+      <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition"><i class="fas fa-moon dark:hidden text-sm"></i><i class="fas fa-sun hidden dark:block text-amber-400 text-sm"></i></button>
+    </div>
+    <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-600 text-white flex items-center justify-center text-2xl shadow-xl"><i class="fas fa-shield-halved"></i></div>
+    <h1 class="text-2xl font-extrabold text-center mt-5">Dashboard Admin</h1>
+    <p class="text-xs text-slate-500 text-center mt-1">KLIK-ASN • BKPSDM</p>
+
+    <div class="mt-8 space-y-4">
+      <div>
+        <label class="block text-xs font-bold uppercase mb-2 text-slate-600 dark:text-slate-400">Password</label>
+        <input id="adminPassword" type="password" placeholder="••••••••" class="w-full px-4 py-3 rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 text-center tracking-widest text-lg font-bold text-slate-800 dark:text-slate-100" autofocus>
+      </div>
+      <button id="loginBtn" onclick="login()" class="w-full py-3.5 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold shadow-lg transition flex items-center justify-center gap-2 text-sm active:scale-95">Masuk Dashboard <i class="fas fa-arrow-right text-xs"></i></button>
+    </div>
+  </div>
+</section>
+
+<section id="dashboardView" class="hidden min-h-screen pb-16 flex flex-col">
+  <header class="glass-panel border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-brand-600 text-white flex items-center justify-center shadow-md"><i class="fas fa-users-gear"></i></div>
+        <div><h1 class="font-extrabold text-base sm:text-lg">KLIK-ASN Admin</h1></div>
+      </div>
+      <div class="flex gap-2">
+        <div id="modeIndicator" class="hidden sm:flex"></div>
+        <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 transition"><i class="fas fa-moon dark:hidden text-xs"></i><i class="fas fa-sun hidden dark:block text-amber-400 text-xs"></i></button>
+        <button onclick="loadAll()" class="px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold hover:bg-slate-50 transition active:scale-95 flex items-center gap-1.5"><i id="refreshIcon" class="fas fa-rotate text-brand-500"></i><span class="hidden sm:inline">Refresh</span></button>
+        <button onclick="logout()" class="px-3.5 py-2 rounded-xl bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300 text-xs font-bold border border-rose-200/80 dark:border-rose-800/40 active:scale-95 flex items-center gap-1.5"><i class="fas fa-right-from-bracket"></i><span class="hidden sm:inline">Logout</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto p-4 lg:p-8 space-y-6 flex-1 w-full">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white dark:bg-slate-900 rounded-3xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm"><p class="text-[11px] font-bold text-slate-400 uppercase">Total Pengguna</p><p id="statTotal" class="text-2xl font-extrabold mt-1">0</p></div>
+      <div class="bg-white dark:bg-slate-900 rounded-3xl p-5 border border-emerald-200 dark:border-emerald-900/40 shadow-sm"><p class="text-[11px] font-bold text-emerald-600 uppercase">Pengguna Aktif</p><p id="statActive" class="text-2xl font-extrabold mt-1 text-emerald-600">0</p></div>
+      <div class="bg-white dark:bg-slate-900 rounded-3xl p-5 border border-rose-200 dark:border-rose-900/40 shadow-sm"><p class="text-[11px] font-bold text-rose-600 uppercase">Non-Aktif</p><p id="statNonActive" class="text-2xl font-extrabold mt-1 text-rose-600">0</p></div>
+      <div class="bg-white dark:bg-slate-900 rounded-3xl p-5 border border-amber-200 dark:border-amber-900/40 shadow-sm"><p class="text-[11px] font-bold text-amber-600 uppercase">Pending Reset</p><p id="statPending" class="text-2xl font-extrabold mt-1 text-amber-600">0</p></div>
+    </div>
+
+    <!-- Panel Persetujuan -->
+    <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+      <div class="px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div><h3 class="font-extrabold text-sm">Persetujuan Reset</h3><span id="pendingBadge" class="px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 text-xs">0</span></div>
+      <div id="pendingBody"></div>
+    </div>
+
+    <!-- Panel Tabel Pengguna -->
+    <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+      <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex flex-col lg:flex-row gap-4 lg:items-center justify-between bg-slate-50 dark:bg-slate-900/50">
+        <div><h3 class="font-extrabold text-sm">Daftar Pengguna</h3><p id="userCount" class="text-xs text-slate-500 mt-1">0 ditemukan</p></div>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <div class="relative w-full sm:w-64"><i class="fas fa-search absolute left-3 top-2.5 text-slate-400 text-xs"></i><input id="searchUser" type="text" placeholder="Cari..." class="pl-8 pr-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 w-full bg-white dark:bg-slate-800 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:outline-none"></div>
+          <div class="flex gap-1.5 flex-wrap">
+            <button data-filter="all" onclick="setFilter('all')" class="filterBtn px-3 py-2 rounded-xl bg-brand-900 text-white text-xs font-bold">Semua</button>
+            <button data-filter="active" onclick="setFilter('active')" class="filterBtn px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold">Aktif</button>
+            <button data-filter="nonactive" onclick="setFilter('nonactive')" class="filterBtn px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold">Non-Aktif</button>
+            <button data-filter="pending" onclick="setFilter('pending')" class="filterBtn px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold">Pending</button>
+          </div>
+          <div class="hidden sm:flex border border-slate-200 dark:border-slate-700 rounded-xl p-0.5"><button id="viewTableBtn" onclick="setViewMode('table')" class="p-2 rounded-lg bg-brand-900 text-white text-xs"><i class="fas fa-list"></i></button><button id="viewCardBtn" onclick="setViewMode('cards')" class="p-2 rounded-lg text-slate-500 text-xs"><i class="fas fa-border-all"></i></button></div>
+        </div>
+      </div>
+      <div id="usersTableView" class="overflow-x-auto"><table class="w-full text-left"><thead class="bg-slate-100/70 dark:bg-slate-800/60 text-[11px] uppercase text-slate-500 border-b border-slate-200 dark:border-slate-800"><tr><th class="px-5 py-3">NIP</th><th class="px-5 py-3">Nama / Status</th><th class="px-5 py-3">Reset</th><th class="px-5 py-3">Waktu</th><th class="px-5 py-3 text-right">Aksi</th></tr></thead><tbody id="usersBody" class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300"></tbody></table></div>
+      <div id="usersCardView" class="hidden p-4 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </div>
+  </main>
+</section>
+</body>
+</html>`;
+        // =========================================================================
 
         document.addEventListener('DOMContentLoaded', () => {
             const loginForm = document.getElementById('login-form');
@@ -674,8 +1297,11 @@
                 
                 pageTitle.textContent = title;
                 
+                // LOGIKA YANG DITAMBAHKAN UNTUK ADMIN KLIK-ASN
                 if(type === 'internal' && url === 'konsultasi') {
                     loadContent('internal', konsultasiHTML);
+                } else if(type === 'internal' && url === 'klik_asn') {
+                    loadContent('internal', adminKlikAsnHTML);
                 } else {
                     loadContent('url', url);
                 }
@@ -717,5 +1343,33 @@
             checkAuth();
         });
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('sidebar-backdrop');
+            
+            // Mencari semua tombol link layanan di dalam sidebar
+            const menuLinks = sidebar.querySelectorAll('a'); 
+
+            function tutupSidebarOtomatis() {
+                // Menggeser kembali sidebar ke kiri luar layar
+                sidebar.classList.add('-translate-x-full');
+                
+                // Menghilangkan latar belakang gelap (backdrop)
+                if (backdrop) {
+                    backdrop.classList.add('hidden');
+                    backdrop.classList.remove('opacity-100');
+                    backdrop.classList.add('opacity-0');
+                }
+            }
+
+            // Memasang fungsi tutup ke setiap menu layanan saat diklik
+            menuLinks.forEach(link => {
+                link.addEventListener('click', tutupSidebarOtomatis);
+            });
+        });
+    </script>
+
 </body>
 </html>
