@@ -86,6 +86,162 @@
             border-left: 4px solid #0ea5e9;
         }
         .nav-item { border-left: 4px solid transparent; }
+        .dashboard-home{width:100%;height:100%;overflow-y:auto;background:radial-gradient(circle at 10% 10%,rgba(14,165,233,.10),transparent 28%),radial-gradient(circle at 90% 90%,rgba(16,185,129,.08),transparent 28%),#f8fafc}
+        /* =========================================================
+   FULLSCREEN SERVICE VIEW
+   Tidak mengubah struktur layanan/iframe yang sudah ada.
+   ========================================================= */
+        .service-card{position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+        .service-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(15,23,42,.10)}
+
+        #dashboard-view.service-fullscreen{
+            position:fixed;
+            inset:0;
+            width:100vw;
+            height:100vh;
+            z-index:90;
+            background:#fff;
+        }
+
+        #dashboard-view.service-fullscreen > aside,
+        #dashboard-view.service-fullscreen > main > header,
+        #dashboard-view.service-fullscreen #sidebar-backdrop{
+            display:none !important;
+        }
+
+        #dashboard-view.service-fullscreen > main{
+            width:100%;
+            height:100%;
+            min-height:100vh;
+        }
+
+        #dashboard-view.service-fullscreen > main > div:last-child{
+            padding:0 !important;
+            width:100%;
+            height:100%;
+            overflow:hidden;
+        }
+
+        #dashboard-view.service-fullscreen #service-frame{
+            display:block !important;
+            width:100%;
+            height:100%;
+            min-height:100vh;
+            border:0;
+            border-radius:0;
+            box-shadow:none;
+            background:#fff;
+        }
+
+        #dashboard-view.service-fullscreen #iframe-loader{
+            inset:0 !important;
+            border:0;
+            border-radius:0;
+            z-index:5;
+        }
+
+
+        /* Floating Exit button: compact, modern, draggable */
+        #service-fullscreen-exit{
+            position:fixed;
+            top:24px;
+            right:24px;
+            z-index:120;
+            width:46px;
+            height:46px;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            border:1px solid rgba(255,255,255,.30);
+            border-radius:16px;
+            color:#fff;
+            background:linear-gradient(145deg,rgba(15,23,42,.92),rgba(30,41,59,.78));
+            backdrop-filter:blur(16px) saturate(140%);
+            -webkit-backdrop-filter:blur(16px) saturate(140%);
+            box-shadow:0 10px 28px rgba(2,6,23,.28), inset 0 1px 0 rgba(255,255,255,.10);
+            cursor:grab;
+            touch-action:none;
+            user-select:none;
+            -webkit-user-select:none;
+            transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+        }
+
+        #service-fullscreen-exit:hover{
+            transform:translateY(-2px) scale(1.04);
+            background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(51,65,85,.90));
+            box-shadow:0 14px 34px rgba(2,6,23,.36), 0 0 0 4px rgba(56,189,248,.08);
+        }
+
+        #service-fullscreen-exit:active{
+            cursor:grabbing;
+            transform:scale(.96);
+        }
+
+        #dashboard-view.service-fullscreen #service-fullscreen-exit{
+            display:flex;
+        }
+
+        #service-fullscreen-exit .exit-icon{
+            position:relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:100%;
+            height:100%;
+        }
+
+        #service-fullscreen-exit .exit-icon i{
+            font-size:21px;
+            filter:drop-shadow(0 2px 5px rgba(0,0,0,.25));
+        }
+
+        #service-fullscreen-exit .exit-dot{
+            position:absolute;
+            top:7px;
+            right:7px;
+            width:6px;
+            height:6px;
+            border-radius:999px;
+            background:#38bdf8;
+            box-shadow:0 0 10px rgba(56,189,248,.95);
+        }
+
+        #service-fullscreen-exit .exit-label{
+            position:absolute;
+            left:50%;
+            bottom:-31px;
+            transform:translateX(-50%) translateY(4px);
+            padding:5px 9px;
+            border-radius:8px;
+            background:rgba(15,23,42,.92);
+            color:#e2e8f0;
+            font-size:10px;
+            font-weight:700;
+            white-space:nowrap;
+            letter-spacing:.02em;
+            opacity:0;
+            pointer-events:none;
+            transition:opacity .18s ease, transform .18s ease;
+            box-shadow:0 6px 18px rgba(2,6,23,.22);
+        }
+
+        #service-fullscreen-exit:hover .exit-label{
+            opacity:1;
+            transform:translateX(-50%) translateY(0);
+        }
+
+        @media (max-width:640px){
+            #service-fullscreen-exit{
+                width:44px;
+                height:44px;
+                top:14px;
+                right:14px;
+                border-radius:15px;
+            }
+            #service-fullscreen-exit .exit-label{
+                display:none;
+            }
+        }
     </style>
 </head>
 <body class="antialiased overflow-hidden h-screen w-screen flex">
@@ -185,6 +341,9 @@
                 <a href="#" data-type="internal" data-title="Admin Klik-ASN" data-url="klik_asn" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
                     <i class="ph ph-laptop text-xl mr-3 text-teal-400 group-hover:scale-110 transition-transform"></i> Admin Klik-ASN
                 </a>
+                            <a href="#" data-type="internal" data-title="Admin ASN Inspiratif" data-url="https://admin-dashboard-asn-inspiratif.blogspot.com/" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-r-xl transition-all hover:bg-white/5 hover:text-white group">
+                    <i class="ph ph-star-four text-xl mr-3 text-amber-400 group-hover:scale-110 transition-transform"></i> Admin ASN Inspiratif
+                </a>
             </nav>
 
             <div class="p-4 border-t border-white/10">
@@ -222,6 +381,15 @@
             </header>
 
             <div class="flex-1 p-3 sm:p-6 overflow-hidden relative">
+                <section id="dashboard-home" class="dashboard-home rounded-2xl border border-slate-200 p-5 sm:p-8">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="mb-7"><span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 text-primary-700 border border-primary-100 text-xs font-bold"><i class="ph ph-sparkle"></i> PORTAL ADMIN KEPEGAWAIAN</span><h2 class="mt-4 text-2xl sm:text-3xl font-extrabold text-slate-800">Dashboard Utama</h2><p class="mt-2 text-sm sm:text-base text-slate-500">Pilih kelompok layanan yang ingin dikelola melalui Portal Admin SIDOKUASN.</p></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                            <button type="button" id="btn-layanan-verifikasi" class="service-card text-left rounded-2xl p-6 sm:p-7 bg-gradient-to-br from-sky-600 to-blue-800 text-white shadow-lg border border-sky-500/30"><div class="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center"><i class="ph ph-shield-check text-3xl"></i></div><h3 class="mt-6 text-xl font-extrabold">Layanan Verifikasi</h3><p class="mt-2 text-sm text-blue-100">Kenaikan Pangkat, Pensiun, Gelar & PMK, serta SLKS.</p><span class="mt-5 inline-flex items-center gap-2 text-sm font-bold bg-white/15 px-4 py-2 rounded-xl">Buka Layanan <i class="ph ph-arrow-right"></i></span></button>
+                            <button type="button" id="btn-layanan-lainnya" class="service-card text-left rounded-2xl p-6 sm:p-7 bg-white text-slate-800 shadow-lg border border-slate-200"><div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i class="ph ph-squares-four text-3xl"></i></div><h3 class="mt-6 text-xl font-extrabold">Layanan Lainnya</h3><p class="mt-2 text-sm text-slate-500">Admin Konsultasi Kepegawaian, Admin Klik-ASN, dan Admin ASN Inspiratif.</p><span class="mt-5 inline-flex items-center gap-2 text-sm font-bold bg-emerald-50 text-emerald-700 px-4 py-2 rounded-xl">Buka Layanan <i class="ph ph-arrow-right"></i></span></button>
+                        </div>
+                    </div>
+                </section>
                 <!-- Loader -->
                 <div id="iframe-loader" class="absolute inset-3 sm:inset-6 bg-white/90 backdrop-blur-sm z-10 rounded-2xl border border-slate-100 flex flex-col items-center justify-center transition-opacity duration-300">
                     <div class="relative flex items-center justify-center">
@@ -233,9 +401,18 @@
                 </div>
                 
                 <!-- IFRAME MAIN -->
-                <iframe id="service-frame" class="iframe-wrapper bg-slate-50" title="Service Content" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads allow-top-navigation-by-user-activation"></iframe>
+                <iframe id="service-frame" style="display:none" class="iframe-wrapper bg-slate-50" title="Service Content" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads allow-top-navigation-by-user-activation"></iframe>
             </div>
         </main>
+
+        <!-- Tombol satu-satunya saat layanan tampil fullscreen -->
+        <button id="service-fullscreen-exit" type="button" aria-label="Keluar dari tampilan layanan penuh" title="Exit Layanan">
+            <span class="exit-icon">
+                <span class="exit-dot"></span>
+                <i class="ph ph-x"></i>
+            </span>
+            <span class="exit-label">Exit</span>
+        </button>
     </div>
 
     <!-- ================= PIN VERIFICATION MODAL ================= -->
@@ -1157,6 +1334,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </html>`;
         // =========================================================================
 
+        const asnInspiratifHTML = `<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"><\/script><script src="https://unpkg.com/@phosphor-icons/web"><\/script></head><body class="bg-slate-50 min-h-screen p-6"><div class="max-w-5xl mx-auto bg-white rounded-3xl border border-slate-200 p-8 shadow-sm"><div class="flex items-center gap-4"><div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center"><i class="ph ph-star-four text-3xl"></i></div><div><h1 class="text-2xl font-extrabold text-slate-800">Admin ASN Inspiratif</h1><p class="text-sm text-slate-500">Panel layanan ASN Inspiratif terintegrasi.</p></div></div><div class="mt-8 p-6 rounded-2xl bg-amber-50 border border-amber-100 text-center"><h2 class="font-bold text-slate-800">Modul siap dikembangkan</h2><p class="mt-2 text-sm text-slate-500">URL atau sumber data layanan ASN Inspiratif dapat dipasang pada modul ini tanpa mengubah struktur portal utama.</p></div></div></body></html>`;
+
         document.addEventListener('DOMContentLoaded', () => {
             const loginForm = document.getElementById('login-form');
             const loginView = document.getElementById('login-view');
@@ -1170,6 +1349,72 @@ document.addEventListener('DOMContentLoaded', () => {
             const iframe = document.getElementById('service-frame');
             const loader = document.getElementById('iframe-loader');
             const pageTitle = document.getElementById('page-title');
+            const dashboardHome = document.getElementById('dashboard-home');
+            const fullscreenExitBtn = document.getElementById('service-fullscreen-exit');
+            let exitDrag = { active:false, moved:false, offsetX:0, offsetY:0, pointerId:null };
+
+            function clampExitButton(x, y) {
+                const margin = 8;
+                const maxX = Math.max(margin, window.innerWidth - fullscreenExitBtn.offsetWidth - margin);
+                const maxY = Math.max(margin, window.innerHeight - fullscreenExitBtn.offsetHeight - margin);
+                return {
+                    x: Math.min(Math.max(margin, x), maxX),
+                    y: Math.min(Math.max(margin, y), maxY)
+                };
+            }
+
+            function setExitButtonPosition(x, y) {
+                const pos = clampExitButton(x, y);
+                fullscreenExitBtn.style.left = `${pos.x}px`;
+                fullscreenExitBtn.style.top = `${pos.y}px`;
+                fullscreenExitBtn.style.right = 'auto';
+                fullscreenExitBtn.style.bottom = 'auto';
+            }
+
+            function beginExitDrag(e) {
+                if (!fullscreenExitBtn || !dashboardView.classList.contains('service-fullscreen')) return;
+                exitDrag.active = true;
+                exitDrag.moved = false;
+                exitDrag.pointerId = e.pointerId;
+                const rect = fullscreenExitBtn.getBoundingClientRect();
+                exitDrag.offsetX = e.clientX - rect.left;
+                exitDrag.offsetY = e.clientY - rect.top;
+                fullscreenExitBtn.setPointerCapture?.(e.pointerId);
+                fullscreenExitBtn.style.cursor = 'grabbing';
+                e.preventDefault();
+            }
+
+            function moveExitDrag(e) {
+                if (!exitDrag.active || e.pointerId !== exitDrag.pointerId) return;
+                const x = e.clientX - exitDrag.offsetX;
+                const y = e.clientY - exitDrag.offsetY;
+                if (Math.abs(e.movementX || 0) > 1 || Math.abs(e.movementY || 0) > 1) {
+                    exitDrag.moved = true;
+                }
+                setExitButtonPosition(x, y);
+                e.preventDefault();
+            }
+
+            function endExitDrag(e) {
+                if (!exitDrag.active || e.pointerId !== exitDrag.pointerId) return;
+                exitDrag.active = false;
+                fullscreenExitBtn.style.cursor = 'grab';
+                fullscreenExitBtn.releasePointerCapture?.(e.pointerId);
+            }
+
+            fullscreenExitBtn.addEventListener('pointerdown', beginExitDrag);
+            fullscreenExitBtn.addEventListener('pointermove', moveExitDrag);
+            fullscreenExitBtn.addEventListener('pointerup', endExitDrag);
+            fullscreenExitBtn.addEventListener('pointercancel', endExitDrag);
+
+            window.addEventListener('resize', () => {
+                if (!dashboardView.classList.contains('service-fullscreen')) return;
+                const rect = fullscreenExitBtn.getBoundingClientRect();
+                setExitButtonPosition(rect.left, rect.top);
+            });
+
+            const btnLayananVerifikasi = document.getElementById('btn-layanan-verifikasi');
+            const btnLayananLainnya = document.getElementById('btn-layanan-lainnya');
             
             const pinModal = document.getElementById('pin-modal');
             const pinForm = document.getElementById('pin-form');
@@ -1245,7 +1490,50 @@ document.addEventListener('DOMContentLoaded', () => {
             closeBtn.addEventListener('click', closeSidebar);
             backdrop.addEventListener('click', closeSidebar);
 
+            function enterServiceFullscreen() {
+                dashboardView.classList.add('service-fullscreen');
+                document.body.classList.add('service-is-fullscreen');
+                document.documentElement.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+                if (fullscreenExitBtn) {
+                    if (!fullscreenExitBtn.style.left && !fullscreenExitBtn.style.top) {
+                        setExitButtonPosition(window.innerWidth - fullscreenExitBtn.offsetWidth - 24, 24);
+                    } else {
+                        const rect = fullscreenExitBtn.getBoundingClientRect();
+                        setExitButtonPosition(rect.left, rect.top);
+                    }
+                    fullscreenExitBtn.focus({preventScroll:true});
+                }
+            }
+
+            function exitServiceFullscreen(showDashboard = true) {
+                dashboardView.classList.remove('service-fullscreen');
+                document.body.classList.remove('service-is-fullscreen');
+                document.documentElement.style.overflow = '';
+                document.body.style.overflow = '';
+
+                if (showDashboard) {
+                    iframe.style.display = 'none';
+                    dashboardHome.style.display = 'block';
+                    loader.classList.add('opacity-0', 'pointer-events-none');
+                    pageTitle.textContent = 'Dashboard Utama';
+
+                    navItems.forEach(nav => {
+                        nav.classList.remove('active', 'text-white');
+                        nav.classList.add('text-gray-300');
+                    });
+
+                    const dashboardNav = document.querySelector('.nav-item[data-title="Dashboard Utama"]');
+                    if (dashboardNav) {
+                        dashboardNav.classList.add('active', 'text-white');
+                        dashboardNav.classList.remove('text-gray-300');
+                    }
+                }
+            }
+
             function loadContent(type, source) {
+                dashboardHome.style.display = 'none';
+                iframe.style.display = 'block';
                 loader.classList.remove('opacity-0', 'pointer-events-none');
                 
                 // Reset src / srcdoc
@@ -1296,12 +1584,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.classList.remove('text-gray-300');
                 
                 pageTitle.textContent = title;
+
+                if (type === 'url' && title === 'Dashboard Utama') {
+                    exitServiceFullscreen(true);
+                    return;
+                }
+
+                // Setiap layanan selain Dashboard dibuka sebagai workspace fullscreen.
+                enterServiceFullscreen();
                 
                 // LOGIKA YANG DITAMBAHKAN UNTUK ADMIN KLIK-ASN
                 if(type === 'internal' && url === 'konsultasi') {
                     loadContent('internal', konsultasiHTML);
                 } else if(type === 'internal' && url === 'klik_asn') {
                     loadContent('internal', adminKlikAsnHTML);
+                } else if(type === 'internal' && url === 'asn_inspiratif') {
+                    loadContent('internal', asnInspiratifHTML);
                 } else {
                     loadContent('url', url);
                 }
@@ -1310,6 +1608,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     closeSidebar();
                 }
             }
+
+            fullscreenExitBtn.addEventListener('click', (e) => {
+                if (exitDrag.moved) {
+                    e.preventDefault();
+                    exitDrag.moved = false;
+                    return;
+                }
+                exitServiceFullscreen(true);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && dashboardView.classList.contains('service-fullscreen')) {
+                    exitServiceFullscreen(true);
+                }
+            });
 
             pinForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -1331,6 +1644,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 pinModal.classList.add('hidden');
                 pendingNavItem = null;
             });
+
+            function openServiceGroup(group) {
+                openSidebar();
+                const target = group === 'verifikasi' ? document.querySelector('a[data-title="Verifikasi Kenaikan Pangkat"]') : document.querySelector('a[data-title="Admin Konsultasi Kepegawaian"]');
+                if (target) setTimeout(() => target.scrollIntoView({behavior:'smooth',block:'center'}),120);
+            }
+            btnLayananVerifikasi.addEventListener('click', () => openServiceGroup('verifikasi'));
+            btnLayananLainnya.addEventListener('click', () => openServiceGroup('lainnya'));
 
             navItems.forEach(item => {
                 item.addEventListener('click', (e) => {
